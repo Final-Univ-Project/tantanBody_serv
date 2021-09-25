@@ -11,13 +11,12 @@ back-end 개발에 대해서 적어둡니다.
 * Gradle
 * Java 11
 ### dependencies
-* Spring Boot DevTools
 * Spring Web
 * Lombok
 * MyBatis Framework
 * MySQL Driver
 ### flow
-Controller ↔ Service(interface) ↔ ServiceImpl(implements Service) ↔ Mapper(interface) ↔ .xml
+Controller ↔ Service(interface) ↔ ServiceImpl(implements Service) ↔ Mapper(interface) ↔ mapper.xml
 
 ## database
 * MySQL 8.0

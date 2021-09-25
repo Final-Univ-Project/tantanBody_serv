@@ -24,6 +24,11 @@ public class UserController {
         return "hello";
     }
 
+    /**
+     * localhost:8080/users
+     * 저장되어 있는 user의 정보를 가져옴
+     * @return
+     */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<Map<String, Object>> getUser(){
         return userService.getUserList();
