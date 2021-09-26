@@ -12,7 +12,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/diet")
+@RequestMapping("/diet") //이 url을 고정으로 함
 public class DietController {
 
     private final DietService dietService;
