@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.tantanbody.mapper.DietMapper">
+
     <select id="selectDiets" resultType="java.util.HashMap">
         SELECT
             fr.EAT_DATM,
@@ -17,8 +18,33 @@
           AND fr.USER_EMAIL = #{userEmail}
     </select>
 
-    <select id="selectFoodList" resultType="java.util.HashMap">
+    <select id="getRecentFoods" resultType="java.util.HashMap">
+        select
+               fi.food_name,
+               fi.one_time_provision,
+               fi.content_unit,
+               fi.total_kcal
+        from
+             SEARCH_HISTORY sh,
+             food_info fi,
+             user_info ui
+        where
+            sh.FOOD_NUM = fi.food_num
+            and sh.USER_EMAIL = ui.USER_EMAIL
+            and sh.USER_EMAIL = #{userEmail}
+        limit 5
+    </select>
 
+    <select id="selectFoodList" resultType="java.util.HashMap">
+    <!--TODO 검색 결과가 없다면 어떻게 처리할 것인지?-->
+        SELECT
+               food_name,
+               one_time_provision,
+               content_unit,
+               total_kcal
+        FROM food_info
+        WHERE
+            food_name LIKE CONCAT('%', #{sFoodName}, '%')
     </select>
 
     <insert id="insertDiet" parameterType="com.app.tantanbody.dto.DietDto">
@@ -36,4 +62,5 @@
                 #{eatCount},
                 #{totalKcal})
     </insert>
+
 </mapper>

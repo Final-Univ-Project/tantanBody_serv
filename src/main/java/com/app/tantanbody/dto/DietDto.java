@@ -5,9 +5,13 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
+/**
+ * 식단 화면 DTO
+ */
 @Getter
 @Setter
 public class DietDto extends UserDto{
+
     private String userEmail; //fk
 
     private Integer foodNum;
@@ -18,5 +22,5 @@ public class DietDto extends UserDto{
     private Timestamp eatDatm; //mysql Datetime == java Timestamp
     private Integer eatCount;
 
-
+    private String sFoodName; //검색하는 음식명
 }

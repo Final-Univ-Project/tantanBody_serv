@@ -20,13 +20,13 @@ public class DietServiceImpl implements DietService{
     }
 
     @Override
-    public List<Map<String, Object>> getRecentFoods() {
-        return null;
+    public List<Map<String, Object>> getRecentFoods(String userEmail) {
+        return dietMapper.getRecentFoods(userEmail);
     }
 
     @Override
-    public List<Map<String, Object>> getFoodList() {
-        return dietMapper.selectFoodList();
+    public List<Map<String, Object>> searchFoodList(String sFoodName) {
+        return dietMapper.selectFoodList(sFoodName);
     }
 
     @Override

@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 식단 화면
+ */
 @Slf4j
 @RestController //내부적으로 Jackson 라이브러리에 의해 dto 객체를 json 형태로 변환하여 응답
 @RequiredArgsConstructor
 @RequestMapping("/diet") //이 url을 고정으로 함
 public class DietController {
+
+    // TODO 최근 검색 결과를 언제 저장해야 하는 것인가??? 저장 시기 생각할 필요 있음
 
     private final DietService dietService;
 
@@ -30,22 +35,25 @@ public class DietController {
 
     /**
      * localhost:8080/search
-     * 최근 검색했던 음식 리스트 뽑아옴
+     * 사용자가 최근 검색했던 음식 리스트를 보여줌
+     * 음식명, 1회 제공량(단위도), 칼로리
      * @return
      */
     @GetMapping("/search")
-    public List<Map<String, Object>> getRecentFoods(){
-        return dietService.getRecentFoods();
+    public List<Map<String, Object>> getRecentFoods(@RequestParam(name = "userEmail") String userEmail){
+        return dietService.getRecentFoods(userEmail);
     }
 
     /**
      * localhost:8080/diet/foodList
-     * 식단 추가 화면에서 검색 버튼 누르면 음식 리스트 쭉 가져옴
-     * @return List<Map<String, Object>>
+     * 식단 추가 화면에서 검색한 음식명과 관련된 음식 가져옴
+     * like 구문 필요
+     * @param sFoodName
+     * @return
      */
     @GetMapping("/search/foodList")
-    public List<Map<String, Object>> getFoodList(){
-        return dietService.getFoodList();
+    public List<Map<String, Object>> searchFoodList(@RequestParam(name = "sFoodName") String sFoodName){
+        return dietService.searchFoodList(sFoodName);
     }
 
     /**
