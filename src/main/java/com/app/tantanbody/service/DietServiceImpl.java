@@ -15,8 +15,13 @@ public class DietServiceImpl implements DietService{
     private final DietMapper dietMapper;
 
     @Override
-    public List<Map<String, Object>> getDiets() {
-        return dietMapper.selectDiets();
+    public List<Map<String, Object>> getDiets(String userEmail) {
+        return dietMapper.selectDiets(userEmail);
+    }
+
+    @Override
+    public List<Map<String, Object>> getRecentFoods() {
+        return null;
     }
 
     @Override
@@ -32,4 +37,6 @@ public class DietServiceImpl implements DietService{
         dietDto.setTotalKcal(dietDto.getTotalKcal());
         return dietMapper.insertDiet(dietDto);
     }
+
+
 }

@@ -9,7 +9,9 @@ import java.util.Map;
 @Mapper
 public interface DietMapper {
 
-    List<Map<String, Object>> selectDiets();
+    List<Map<String, Object>> selectDiets(String userEmail);
+
+    List<Map<String, Object>> getRecentFoods();
 
     List<Map<String, Object>> selectFoodList();
 

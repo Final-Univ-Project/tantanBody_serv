@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.tantanbody.mapper.DietMapper">
+    <select id="selectDiets" resultType="java.util.HashMap">
+        SELECT
+            fr.EAT_DATM,
+            fi.food_name,
+            fr.EAT_COUNT,
+            fr.TOTAL_KCAL
+        FROM
+            food_record fr,
+            user_info ui,
+            food_info fi
+        WHERE
+            ui.USER_EMAIL = fr.USER_EMAIL
+          AND fr.FOOD_NUM = fi.food_num
+          AND fr.USER_EMAIL = #{userEmail}
+    </select>
+
     <select id="selectFoodList" resultType="java.util.HashMap">
 
     </select>
 
     <insert id="insertDiet" parameterType="com.app.tantanbody.dto.DietDto">
-    <!--TODO 쿼리 문제 있음-->
+    <!--TODO 쿼리 문제 있음 - 수정 필요-->
         INSERT
         INTO
             food_record(FOOD_NUM,
@@ -14,8 +30,8 @@
                         EAT_DATM,
                         EAT_COUNT,
                         TOTAL_KCAL)
-        VALUES ((SELECT FOOD_NUM FROM food_info WHERE FOOD_NUM = {#foodNum}),
-                (SELECT USER_EMAIL FROM user_info WHERE USER_EMAIL = {#userEmail}),
+        VALUES ((SELECT FOOD_NUM FROM food_info WHERE FOOD_NUM = #{foodNum}),
+                (SELECT USER_EMAIL FROM user_info WHERE USER_EMAIL = #{userEmail}),
                 now(),
                 #{eatCount},
                 #{totalKcal})
