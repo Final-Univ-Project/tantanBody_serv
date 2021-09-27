@@ -4,4 +4,20 @@
     <select id="selectFoodList" resultType="java.util.HashMap">
 
     </select>
+
+    <insert id="insertDiet" parameterType="com.app.tantanbody.dto.DietDto">
+    <!--TODO 쿼리 문제 있음-->
+        INSERT
+        INTO
+            food_record(FOOD_NUM,
+                        USER_EMAIL,
+                        EAT_DATM,
+                        EAT_COUNT,
+                        TOTAL_KCAL)
+        VALUES ((SELECT FOOD_NUM FROM food_info WHERE FOOD_NUM = {#foodNum}),
+                (SELECT USER_EMAIL FROM user_info WHERE USER_EMAIL = {#userEmail}),
+                now(),
+                #{eatCount},
+                #{totalKcal})
+    </insert>
 </mapper>
