@@ -1,7 +1,7 @@
 # tantanbody_server
 back-end 개발에 대해서 적어둡니다.   
-큰 부분만 일단 적어요.
-
+큰 부분만 일단 적어요.   
+(front-end 개발은 [여기](https://github.com/Final-Univ-Project/TanTanBody))
 ## team member
 * 나현정(컴퓨터공학부 18)
 * 이주현(컴퓨터공학부 17)
