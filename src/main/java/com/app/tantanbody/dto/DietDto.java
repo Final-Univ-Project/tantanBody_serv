@@ -2,12 +2,15 @@ package com.app.tantanbody.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.ibatis.type.Alias;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 식단 화면 DTO
  */
+@Alias("dietDTO")
 @Getter
 @Setter
 public class DietDto extends UserDto{
@@ -23,4 +26,7 @@ public class DietDto extends UserDto{
     private Integer eatCount;
 
     private String sFoodName; //검색하는 음식명
+
+    private List<DietDto> dietList;
+
 }

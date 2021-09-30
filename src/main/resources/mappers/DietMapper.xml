@@ -47,7 +47,7 @@
             food_name LIKE CONCAT('%', #{sFoodName}, '%')
     </select>
 
-    <insert id="insertDiet" parameterType="com.app.tantanbody.dto.DietDto">
+    <insert id="insertDiet" parameterType="DietDTO">
     <!--TODO 쿼리 문제 있음 - 수정 필요-->
         INSERT
         INTO
@@ -56,7 +56,8 @@
                         EAT_DATM,
                         EAT_COUNT,
                         TOTAL_KCAL)
-        VALUES ((SELECT FOOD_NUM FROM food_info WHERE FOOD_NUM = #{foodNum}),
+        VALUES
+               ((SELECT FOOD_NUM FROM food_info WHERE FOOD_NUM = #{foodNum}),
                 (SELECT USER_EMAIL FROM user_info WHERE USER_EMAIL = #{userEmail}),
                 now(),
                 #{eatCount},

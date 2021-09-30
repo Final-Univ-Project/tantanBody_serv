@@ -13,6 +13,6 @@ public interface DietService {
 
     public List<Map<String, Object>> searchFoodList(String sFoodName);
 
-    public DietDto saveDiet(DietDto dietDto);
+    public void saveDiet(DietDto dietDto);
 
 }

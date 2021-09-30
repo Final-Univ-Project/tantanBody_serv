@@ -60,14 +60,27 @@ public class DietController {
      * localhost:8080/diet/save
      * 식단 저장
      * @param dietDto
-     * @return DietDto
+     * @return String
      */
     @ResponseBody
     @PostMapping("/save")
-    public DietDto saveDiet(@RequestBody DietDto dietDto){
-        log.info("foodNum={}, userEmail={}, eatDatm={}, eatCount={}, totalKcal={}",
-                dietDto.getFoodNum(), dietDto.getUserEmail(), dietDto.getEatDatm(), dietDto.getEatCount(), dietDto.getTotalKcal());
-        return dietService.saveDiet(dietDto);
+    public String saveDiet(@RequestBody DietDto dietDto){
+        try{
+            List<DietDto> aaa = dietDto.getDietList();
+            int i = 0;
+
+            for(DietDto dietList : aaa){
+                log.info("INSERT execute >>>>> foodNum={}, userEmail={}, eatCount={}, totalKcal={}",
+                        dietList.getFoodNum(), dietList.getUserEmail(), dietList.getEatCount(), dietList.getTotalKcal());
+                dietService.saveDiet(dietList);
+
+                i++;
+            }
+
+            return "OK";
+        } catch (Exception e) {
+            return "ERR";
+        }
     }
 
 }

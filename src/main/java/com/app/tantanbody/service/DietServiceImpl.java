@@ -30,12 +30,13 @@ public class DietServiceImpl implements DietService{
     }
 
     @Override
-    public DietDto saveDiet(DietDto dietDto) {
+    public void saveDiet(DietDto dietDto) {
         dietDto.setEatDatm(dietDto.getEatDatm());
         dietDto.setUserEmail(dietDto.getUserEmail());
         dietDto.setEatCount(dietDto.getEatCount());
         dietDto.setTotalKcal(dietDto.getTotalKcal());
-        return dietMapper.insertDiet(dietDto);
+        dietDto.setDietList(dietDto.getDietList());
+        dietMapper.insertDiet(dietDto);
     }
 
 

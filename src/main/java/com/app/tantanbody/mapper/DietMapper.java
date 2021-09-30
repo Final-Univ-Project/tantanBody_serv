@@ -15,6 +15,6 @@ public interface DietMapper {
 
     List<Map<String, Object>> selectFoodList(String sFoodName);
 
-    DietDto insertDiet(DietDto dietDto);
+    void insertDiet(DietDto dietDto);
 
 }
