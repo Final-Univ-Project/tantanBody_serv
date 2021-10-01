@@ -11,4 +11,6 @@ public interface UserMapper {
 
     List<Map<String, Object>> getUserList();
 
+    void insertUserDate(UserDto userDto);
+
 }

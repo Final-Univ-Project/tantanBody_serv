@@ -47,8 +47,7 @@
             food_name LIKE CONCAT('%', #{sFoodName}, '%')
     </select>
 
-    <insert id="insertDiet" parameterType="DietDTO">
-    <!--TODO 쿼리 문제 있음 - 수정 필요-->
+    <insert id="insertDiet" parameterType="dietDTO">
         INSERT
         INTO
             food_record(FOOD_NUM,
