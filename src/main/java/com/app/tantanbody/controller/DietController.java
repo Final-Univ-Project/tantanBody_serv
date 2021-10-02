@@ -1,6 +1,7 @@
 package com.app.tantanbody.controller;
 
 import com.app.tantanbody.dto.DietDto;
+import com.app.tantanbody.dto.UserDto;
 import com.app.tantanbody.service.DietService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,29 +24,35 @@ public class DietController {
     private final DietService dietService;
 
     /**
-     * localhost:8080/diet/lists
+     * localhost:8080/diet
      * 식단 메인 화면에서 지금까지 기록했던 식단들 볼 수 있음
      * 해당 사용자의 식단만 봐야하기 때문에 파라미터로 현재 사용자의 이메일을 넘김
      * @return List<Map<String, Object>>
      */
-    @GetMapping("/lists")
+    @GetMapping
     public List<Map<String, Object>> getDiets(@RequestParam(name = "userEmail") String userEmail){
         return dietService.getDiets(userEmail);
     }
 
+    /*@ResponseBody
+    @PostMapping
+    public DietDto getDiets(@RequestBody String userEmail){
+        return dietService.getDiets(userEmail);
+    }*/
+
     /**
-     * localhost:8080/search
+     * localhost:8080/diet/w/search
      * 사용자가 최근 검색했던 음식 리스트를 보여줌
      * 음식명, 1회 제공량(단위도), 칼로리
      * @return
      */
-    @GetMapping("/search")
+    @GetMapping("/w/search")
     public List<Map<String, Object>> getRecentFoods(@RequestParam(name = "userEmail") String userEmail){
         return dietService.getRecentFoods(userEmail);
     }
 
     /**
-     * localhost:8080/diet/foodList
+     * localhost:8080/diet/w/search/foodList
      * 식단 추가 화면에서 검색한 음식명과 관련된 음식 가져옴
      * like 구문 필요
      * @param sFoodName
@@ -57,13 +64,13 @@ public class DietController {
     }
 
     /**
-     * localhost:8080/diet/save
+     * localhost:8080/diet/w/save
      * 식단 저장
      * @param dietDto
      * @return String
      */
     @ResponseBody
-    @PostMapping("/save")
+    @PostMapping("/w/save")
     public String saveDiet(@RequestBody DietDto dietDto){
         try{
             List<DietDto> aaa = dietDto.getDietList();
@@ -73,7 +80,6 @@ public class DietController {
                 log.info("INSERT execute >>>>> foodNum={}, userEmail={}, eatCount={}, totalKcal={}",
                         dietList.getFoodNum(), dietList.getUserEmail(), dietList.getEatCount(), dietList.getTotalKcal());
                 dietService.saveDiet(dietList);
-
                 i++;
             }
 

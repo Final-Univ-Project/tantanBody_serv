@@ -3,11 +3,13 @@ package com.app.tantanbody.service;
 import com.app.tantanbody.dto.DietDto;
 import com.app.tantanbody.mapper.DietMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DietServiceImpl implements DietService{
@@ -16,8 +18,15 @@ public class DietServiceImpl implements DietService{
 
     @Override
     public List<Map<String, Object>> getDiets(String userEmail) {
+        log.info("===== getDiets ::: start");
         return dietMapper.selectDiets(userEmail);
     }
+
+    /*@Override
+    public DietDto getDiets(String userEmail) {
+        log.info("===== getDiets ::: start");
+        return dietMapper.selectDiets(userEmail);
+    }*/
 
     @Override
     public List<Map<String, Object>> getRecentFoods(String userEmail) {
