@@ -1,7 +1,6 @@
 package com.app.tantanbody.controller;
 
 import com.app.tantanbody.dto.DietDto;
-import com.app.tantanbody.dto.UserDto;
 import com.app.tantanbody.service.DietService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/diet") //이 url을 고정으로 함
 public class DietController {
 
-    // TODO 최근 검색 결과를 언제 저장해야 하는 것인가??? 저장 시기 생각할 필요 있음
+    // TODO 최근 검색 결과를 언제 저장해야 하는 것인가??? 저장 시기 생각할 필요 있음 - 검색 결과 처리할때 하는게 제일 좋을듯
 
     private final DietService dietService;
 
@@ -31,6 +30,7 @@ public class DietController {
      */
     @GetMapping
     public List<Map<String, Object>> getDiets(@RequestParam(name = "userEmail") String userEmail){
+        log.info("dietService.getDiets(userEmail) >>>>> {}", dietService.getDiets(userEmail));
         return dietService.getDiets(userEmail);
     }
 
@@ -58,8 +58,10 @@ public class DietController {
      * @param sFoodName
      * @return
      */
-    @GetMapping("/search/foodList")
+    @GetMapping("/w/search/foodList")
     public List<Map<String, Object>> searchFoodList(@RequestParam(name = "sFoodName") String sFoodName){
+        log.info("검색할 음식 명 >>> {}", sFoodName);
+        log.info("dietService.searchFoodList(sFoodName) >>>>> {}", dietService.searchFoodList(sFoodName));
         return dietService.searchFoodList(sFoodName);
     }
 

@@ -9,6 +9,6 @@ public interface UserService {
 
     public List<Map<String, Object>> getUserList();
 
-    void saveUserDate(UserDto userDto);
+    void saveUserData(UserDto userDto);
 
 }

@@ -5,7 +5,7 @@
         SELECT USER_EMAIL as userEmail, USER_NAME as userName FROM user_info
     </select>
 
-    <insert id="insertUserDate" parameterType="userDTO">
+    <insert id="insertUserData" parameterType="userDTO">
         insert into user_info
         values (#{userEmail}, #{userName}, #{userPhoto});
     </insert>

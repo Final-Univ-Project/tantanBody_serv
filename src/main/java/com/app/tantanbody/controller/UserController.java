@@ -24,7 +24,7 @@ public class UserController {
     /**
      * localhost:8080/users
      * 저장되어 있는 user의 정보를 가져옴
-     * @return
+     * @return List<Map<String, Object>>
      */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<Map<String, Object>> getUser(){
@@ -40,8 +40,7 @@ public class UserController {
     @PostMapping("/login")
     public String saveUserData(@RequestBody UserDto userDto){
         try{
-            userService.saveUserDate(userDto);
-
+            userService.saveUserData(userDto);
             return "OK";
         } catch (Exception e){
             return "ERR";

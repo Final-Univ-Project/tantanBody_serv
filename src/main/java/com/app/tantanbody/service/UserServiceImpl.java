@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUserDate(UserDto userDto) {
-        userMapper.insertUserDate(userDto);
+    public void saveUserData(UserDto userDto) {
+        userMapper.insertUserData(userDto);
     }
 
 }
