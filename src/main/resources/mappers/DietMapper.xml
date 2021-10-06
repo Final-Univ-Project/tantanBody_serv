@@ -20,6 +20,7 @@
           AND fr.USER_EMAIL = #{userEmail}
     </select>
 
+    <!--TODO 수정이 필요할수도-->
     <select id="getRecentFoods" resultType="java.util.HashMap">
         select
                fi.food_name,
@@ -32,8 +33,8 @@
              user_info ui
         where
             sh.FOOD_NUM = fi.food_num
-            and sh.USER_EMAIL = ui.USER_EMAIL
-            and sh.USER_EMAIL = #{userEmail}
+            and sh.USER_EMAIL COLLATE utf8mb4_general_ci = ui.USER_EMAIL
+            and sh.USER_EMAIL COLLATE utf8mb4_general_ci = #{userEmail}
         limit 5
     </select>
 
@@ -48,6 +49,19 @@
         WHERE
             food_name LIKE CONCAT('%', #{sFoodName}, '%')
     </select>
+
+    <!--TODO 으아아아아-->
+    <insert id="insertSearchFood" parameterType="dietDTO">
+        INSERT
+        INTO
+            search_history
+        VALUES
+            (
+             (SELECT USER_EMAIL FROM user_info WHERE USER_EMAIL = #{userEmail}),
+             (SELECT FOOD_NUM FROM food_info WHERE FOOD_NUM = #{sFoodName}),
+             now()
+            )
+    </insert>
 
     <insert id="insertDiet" parameterType="dietDTO">
         INSERT

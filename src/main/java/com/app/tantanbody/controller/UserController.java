@@ -22,25 +22,28 @@ public class UserController {
     }
 
     /**
-     * localhost:8080/users
+     * 192.168.10.27:8080/
      * 저장되어 있는 user의 정보를 가져옴
+     * 가져와서 지금 사용하는 사용자 email이 있는지 확인해서 있으면 기존 사용자, 없으면 신규 사용자 판단 필요
+     * 즉, 반환값이 list 가 아닌 string 으로 new, not new 등으로 표현할 필요 있음
      * @return List<Map<String, Object>>
      */
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @GetMapping("/")
     public List<Map<String, Object>> getUser(){
         return userService.getUserList();
     }
 
     /**
-     * front에서 넘긴 사용자 정보를 db에 저장
-     * 추후에 사용자가 또 로그인을 하게 되면 이 정보를 가지고 각종 정보를 사용할 수 있게 함
-     * 즉, 로그인 상태 유지는 어렵...
+     * 사용자 검사
+     * @param userDto
      * @return
      */
     @PostMapping("/login")
     public String saveUserData(@RequestBody UserDto userDto){
         try{
-            userService.saveUserData(userDto);
+            if(userService.searchUser(userDto) == 0){ //신규 사용자는 저장해줘야 함
+                userService.saveUserData(userDto);
+            }
             return "OK";
         } catch (Exception e){
             return "ERR";

@@ -22,12 +22,6 @@ public class DietServiceImpl implements DietService{
         return dietMapper.selectDiets(userEmail);
     }
 
-    /*@Override
-    public DietDto getDiets(String userEmail) {
-        log.info("===== getDiets ::: start");
-        return dietMapper.selectDiets(userEmail);
-    }*/
-
     @Override
     public List<Map<String, Object>> getRecentFoods(String userEmail) {
         return dietMapper.getRecentFoods(userEmail);
@@ -37,6 +31,11 @@ public class DietServiceImpl implements DietService{
     public List<Map<String, Object>> searchFoodList(String sFoodName) {
         return dietMapper.selectFoodList(sFoodName);
     }
+
+    /*@Override
+    public void saveSearchFood(DietDto dietDto) {
+        dietMapper.insertSearchFood(dietDto);
+    }*/
 
     @Override
     public void saveDiet(DietDto dietDto) {

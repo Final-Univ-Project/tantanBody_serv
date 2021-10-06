@@ -13,4 +13,6 @@ public interface UserMapper {
 
     void insertUserData(UserDto userDto);
 
+    int selectUser(UserDto userDto);
+
 }

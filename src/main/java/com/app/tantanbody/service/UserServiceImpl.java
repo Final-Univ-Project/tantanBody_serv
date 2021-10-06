@@ -22,6 +22,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int searchUser(UserDto userDto) {
+        return userMapper.selectUser(userDto);
+    }
+
+    @Override
     public void saveUserData(UserDto userDto) {
         userMapper.insertUserData(userDto);
     }

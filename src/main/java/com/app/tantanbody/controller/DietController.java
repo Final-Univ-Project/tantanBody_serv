@@ -28,28 +28,26 @@ public class DietController {
      * 해당 사용자의 식단만 봐야하기 때문에 파라미터로 현재 사용자의 이메일을 넘김
      * @return List<Map<String, Object>>
      */
-    @GetMapping
-    public List<Map<String, Object>> getDiets(@RequestParam(name = "userEmail") String userEmail){
-        log.info("dietService.getDiets(userEmail) >>>>> {}", dietService.getDiets(userEmail));
+    @ResponseBody
+    @PostMapping
+    public List<Map<String, Object>> getDiets(@RequestBody String userEmail){
         return dietService.getDiets(userEmail);
     }
-
-    /*@ResponseBody
-    @PostMapping
-    public DietDto getDiets(@RequestBody String userEmail){
-        return dietService.getDiets(userEmail);
-    }*/
 
     /**
      * localhost:8080/diet/w/search
-     * 사용자가 최근 검색했던 음식 리스트를 보여줌
-     * 음식명, 1회 제공량(단위도), 칼로리
+     * 사용자가 최근 검색했던 음식명 리스트를 보여줌
      * @return
      */
-    @GetMapping("/w/search")
-    public List<Map<String, Object>> getRecentFoods(@RequestParam(name = "userEmail") String userEmail){
+    @ResponseBody
+    @PostMapping("/w/search")
+    public List<Map<String, Object>> getRecentFoods(@RequestBody String userEmail){
         return dietService.getRecentFoods(userEmail);
     }
+    /*@GetMapping("/w/search")
+    public List<Map<String, Object>> getRecentFoods(@RequestParam(name = "userEmail") String userEmail){
+        return dietService.getRecentFoods(userEmail);
+    }*/
 
     /**
      * localhost:8080/diet/w/search/foodList
@@ -58,11 +56,18 @@ public class DietController {
      * @param sFoodName
      * @return
      */
-    @GetMapping("/w/search/foodList")
-    public List<Map<String, Object>> searchFoodList(@RequestParam(name = "sFoodName") String sFoodName){
+    @ResponseBody
+    @PostMapping("/w/search/foodList")
+    public List<Map<String, Object>> searchFoodList(@RequestBody String sFoodName){
         log.info("검색할 음식 명 >>> {}", sFoodName);
-        log.info("dietService.searchFoodList(sFoodName) >>>>> {}", dietService.searchFoodList(sFoodName));
-        return dietService.searchFoodList(sFoodName);
+        //log.info("dietService.searchFoodList(sFoodName) >>>>> {}", dietService.searchFoodList(sFoodName));
+        try{
+            // TODO 사용자 정보도 검색한 음식에 저장할 때 넣어야 함... 파라미터 잘 생각해보기!
+            //dietService.saveSearchFood(dietDto); //검색한 음식 저장
+            return dietService.searchFoodList(sFoodName); //검색한 음식명을 가진 모든 음식 불러옴
+        } catch (Exception e){
+            return null;
+        }
     }
 
     /**
@@ -90,5 +95,4 @@ public class DietController {
             return "ERR";
         }
     }
-
 }

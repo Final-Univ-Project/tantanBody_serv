@@ -11,4 +11,6 @@ public interface UserService {
 
     void saveUserData(UserDto userDto);
 
+    int searchUser(UserDto userDto);
+
 }
