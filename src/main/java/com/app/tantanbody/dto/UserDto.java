@@ -11,4 +11,5 @@ public class UserDto {
     private String email;
     private String name;
     private String photo = null;
+    private String goal; //운동 목표
 }

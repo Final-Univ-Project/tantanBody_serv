@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * 식단 화면 DTO
+ * 식단 화면 관련 DTO
  */
 @Alias("dietDTO")
 @Getter

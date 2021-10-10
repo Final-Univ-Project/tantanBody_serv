@@ -62,7 +62,7 @@ public class DietController {
         log.info("검색할 음식 명 >>> {}", sFoodName);
         //log.info("dietService.searchFoodList(sFoodName) >>>>> {}", dietService.searchFoodList(sFoodName));
         try{
-            // TODO 사용자 정보도 검색한 음식에 저장할 때 넣어야 함... 파라미터 잘 생각해보기!
+            // TODO 사용자 정보도 검색한 음식에 저장할 때 넣어야 함... 사용자 이메일이랑 음식이름을 넘겨야 함
             //dietService.saveSearchFood(dietDto); //검색한 음식 저장
             return dietService.searchFoodList(sFoodName); //검색한 음식명을 가진 모든 음식 불러옴
         } catch (Exception e){

@@ -16,11 +16,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/")
-    public Object test(){
-        return "hello";
-    }
-
     /**
      * 192.168.10.27:8080/
      * 저장되어 있는 user의 정보를 가져옴
@@ -41,7 +36,7 @@ public class UserController {
     @PostMapping("/login")
     public String saveUserData(@RequestBody UserDto userDto){
         try{
-            if(userService.searchUser(userDto) == 0){ //신규 사용자는 저장해줘야 함
+            if(userService.searchUser(userDto) == 0){ //신규 사용자는 user 정보를 저장해줘야 함
                 userService.saveUserData(userDto);
             }
             return "OK";
@@ -49,5 +44,4 @@ public class UserController {
             return "ERR";
         }
     }
-
 }
