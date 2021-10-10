@@ -18,8 +18,6 @@ import java.util.Map;
 @RequestMapping("/diet") //이 url을 고정으로 함
 public class DietController {
 
-    // TODO 최근 검색 결과를 언제 저장해야 하는 것인가??? 저장 시기 생각할 필요 있음 - 검색 결과 처리할때 하는게 제일 좋을듯
-
     private final DietService dietService;
 
     /**

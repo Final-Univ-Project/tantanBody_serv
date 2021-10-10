@@ -8,8 +8,8 @@ import org.apache.ibatis.type.Alias;
 @Getter
 @Setter
 public class UserDto {
-    private String email;
-    private String name;
+    private String userEmail;
+    private String userName;
     private String photo = null;
     private String goal; //운동 목표
 }

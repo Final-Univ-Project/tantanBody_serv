@@ -20,7 +20,7 @@
           AND fr.USER_EMAIL = #{userEmail}
     </select>
 
-    <!--TODO 수정이 필요할수도-->
+    <!--TODO DB에 맞춰 수정 필요-->
     <select id="getRecentFoods" resultType="java.util.HashMap">
         select
                fi.food_name,

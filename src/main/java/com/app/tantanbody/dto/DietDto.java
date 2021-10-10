@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 public class DietDto extends UserDto{
 
-    private String userEmail; //fk
+    //private String userEmail; //fk
 
     private Integer foodNum;
     private String foodName;
