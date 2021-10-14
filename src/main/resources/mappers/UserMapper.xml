@@ -15,7 +15,7 @@
 
     <insert id="insertUserData" parameterType="userDTO">
         insert into user_info
-        values (#{userEmail}, #{userName}, #{userPhoto})
+        values (#{userEmail}, #{userName}, #{userPhoto}, #{goal})
     </insert>
 
 </mapper>

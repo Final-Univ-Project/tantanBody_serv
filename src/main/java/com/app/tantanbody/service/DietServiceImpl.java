@@ -22,9 +22,13 @@ public class DietServiceImpl implements DietService{
         return dietMapper.selectDiets(userEmail);
     }
 
-    @Override
+    /*@Override
     public List<Map<String, Object>> getRecentFoods(String userEmail) {
-        return dietMapper.getRecentFoods(userEmail);
+        return dietMapper.selectRecentFoods(userEmail);
+    }*/
+    @Override
+    public String[] getRecentFoods(String userEmail) {
+        return dietMapper.selectRecentFoods(userEmail);
     }
 
     @Override

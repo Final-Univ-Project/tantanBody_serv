@@ -15,6 +15,7 @@ back-end 개발에 대해서 적어둡니다.
 * Lombok
 * MyBatis Framework
 * MySQL Driver
+* Spring Boot DevTools
 ### flow
 Controller ↔ Service(interface) ↔ ServiceImpl(implements Service) ↔ Mapper(interface) ↔ mapper.xml
 

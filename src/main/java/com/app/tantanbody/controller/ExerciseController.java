@@ -1,6 +1,7 @@
 package com.app.tantanbody.controller;
 
 import com.app.tantanbody.dto.ExerciseDto;
+import com.app.tantanbody.dto.UserDto;
 import com.app.tantanbody.service.ExerciseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +20,14 @@ public class ExerciseController {
 
     /**
      * 운동 화면에 처음 들어가면 사용자가 즐겨찾기 한 운동이 나와야 함
-     * @param userEmail
-     * @return List<Map<String, Object>>
+     * @param userDto
+     * @return
      */
     @ResponseBody
     @PostMapping
-    public List<Map<String, Object>> getFavExercise(@RequestBody String userEmail){
+    public List<Map<String, Object>> getFavExercise(@RequestBody UserDto userDto){
         try{
+            String userEmail = userDto.getUserEmail();
             log.info("===== 사용자의 즐겨찾기 운동 리스트 가져오기");
             return exerciseService.getFavExercise(userEmail);
         } catch (Exception e){
@@ -42,6 +44,7 @@ public class ExerciseController {
     @PostMapping("/video")
     public String saveVideo(@RequestBody ExerciseDto exerciseDto){
         try {
+            log.info("===== saveVideo() : 운동 영상 기본 저장");
             exerciseService.saveVideo(exerciseDto);
 
             return "OK";
@@ -59,6 +62,7 @@ public class ExerciseController {
     @PostMapping("/record")
     public String saveExerRecord(@RequestBody ExerciseDto exerciseDto){
         try{
+            log.info("===== saveExerRecord() : 운동 기록 저장");
             exerciseService.saveExerRecord(exerciseDto);
 
             return "OK";

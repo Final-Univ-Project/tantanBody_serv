@@ -1,6 +1,7 @@
 package com.app.tantanbody.controller;
 
 import com.app.tantanbody.dto.DietDto;
+import com.app.tantanbody.dto.UserDto;
 import com.app.tantanbody.service.DietService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,34 +29,41 @@ public class DietController {
      */
     @ResponseBody
     @PostMapping
-    public List<Map<String, Object>> getDiets(@RequestBody String userEmail){
+    public List<Map<String, Object>> getDiets(@RequestBody UserDto userDto){
+        String userEmail = userDto.getUserEmail();
+        log.info("===== userEmail={}", userEmail);
         return dietService.getDiets(userEmail);
     }
 
     /**
-     * localhost:8080/diet/w/search
-     * 사용자가 최근 검색했던 음식명 리스트를 보여줌
-     * @return
+     * /diet/w/search
+     * 사용자가 최근 검색했던 음식들을 보여줌
+     * @return String[]
      */
-    @ResponseBody
+    /*@ResponseBody
     @PostMapping("/w/search")
-    public List<Map<String, Object>> getRecentFoods(@RequestBody String userEmail){
-        return dietService.getRecentFoods(userEmail);
-    }
-    /*@GetMapping("/w/search")
-    public List<Map<String, Object>> getRecentFoods(@RequestParam(name = "userEmail") String userEmail){
+    public List<Map<String, Object>> getRecentFoods(@RequestBody UserDto userDto){
+        String userEmail = userDto.getUserEmail();
+        log.info("===== userEmail={}", userEmail);
         return dietService.getRecentFoods(userEmail);
     }*/
+    @ResponseBody
+    @PostMapping("/w/search")
+    public String[] getRecentFoods(@RequestBody UserDto userDto){
+        String userEmail = userDto.getUserEmail();
+        log.info("===== userEmail={}", userEmail);
+        return dietService.getRecentFoods(userEmail);
+    }
 
     /**
-     * localhost:8080/diet/w/search/foodList
+     * /diet/w/search/foods
      * 식단 추가 화면에서 검색한 음식명과 관련된 음식 가져옴
      * like 구문 필요
      * @param sFoodName
      * @return
      */
     @ResponseBody
-    @PostMapping("/w/search/foodList")
+    @PostMapping("/w/search/foods")
     public List<Map<String, Object>> searchFoodList(@RequestBody String sFoodName){
         log.info("검색할 음식 명 >>> {}", sFoodName);
         //log.info("dietService.searchFoodList(sFoodName) >>>>> {}", dietService.searchFoodList(sFoodName));
@@ -69,7 +77,7 @@ public class DietController {
     }
 
     /**
-     * localhost:8080/diet/w/save
+     * /diet/w/save
      * 식단 저장
      * @param dietDto
      * @return String

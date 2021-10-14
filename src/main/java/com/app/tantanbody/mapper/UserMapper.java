@@ -11,8 +11,8 @@ public interface UserMapper {
 
     List<Map<String, Object>> getUserList();
 
-    void insertUserData(UserDto userDto);
-
     int selectUser(UserDto userDto);
+
+    void insertUserData(UserDto userDto);
 
 }

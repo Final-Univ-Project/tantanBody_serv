@@ -11,7 +11,8 @@ public interface DietMapper {
 
     List<Map<String, Object>> selectDiets(String userEmail);
 
-    List<Map<String, Object>> getRecentFoods(String userEmail);
+    //List<Map<String, Object>> selectRecentFoods(String userEmail);
+    String[] selectRecentFoods(String userEmail);
 
     List<Map<String, Object>> selectFoodList(String sFoodName);
 

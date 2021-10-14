@@ -9,7 +9,8 @@ public interface DietService {
 
     public List<Map<String, Object>> getDiets(String userEmail);
 
-    List<Map<String, Object>> getRecentFoods(String userEmail);
+    //List<Map<String, Object>> getRecentFoods(String userEmail);
+    String[] getRecentFoods(String userEmail);
 
     public List<Map<String, Object>> searchFoodList(String sFoodName);
 

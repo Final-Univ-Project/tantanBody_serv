@@ -20,22 +20,17 @@
           AND fr.USER_EMAIL = #{userEmail}
     </select>
 
-    <!--TODO DB에 맞춰 수정 필요-->
-    <select id="getRecentFoods" resultType="java.util.HashMap">
-        select
-               fi.food_name,
-               fi.one_time_provision,
-               fi.content_unit,
-               fi.total_kcal
-        from
-             SEARCH_HISTORY sh,
-             food_info fi,
-             user_info ui
-        where
-            sh.FOOD_NUM = fi.food_num
-            and sh.USER_EMAIL COLLATE utf8mb4_general_ci = ui.USER_EMAIL
-            and sh.USER_EMAIL COLLATE utf8mb4_general_ci = #{userEmail}
-        limit 5
+    <!--TODO String List 반환임-->
+    <select id="selectRecentFoods" resultType="String">
+        SELECT
+            SEARCH_WORD
+        FROM
+            search_history
+        WHERE
+            USER_EMAIL = #{userEmail}
+        ORDER BY
+            SEARCH_TIME DESC
+        LIMIT 5
     </select>
 
     <select id="selectFoodList" resultType="java.util.HashMap">

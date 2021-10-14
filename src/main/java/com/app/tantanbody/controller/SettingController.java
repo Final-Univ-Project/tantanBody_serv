@@ -18,6 +18,7 @@ public class SettingController {
 
     @GetMapping("/setting")
     public Map<String, Object> getUserInfo(@RequestParam(name = "userEmail") String userEmail){
+        log.info("===== getUserInfo() 실행");
         return settingService.getUserInfo(userEmail);
     }
 
