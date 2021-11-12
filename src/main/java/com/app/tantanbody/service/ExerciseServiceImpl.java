@@ -41,5 +41,8 @@ public class ExerciseServiceImpl implements ExerciseService {
         exerciseMapper.deleteFavVideo(userEmail, videoId);
     }
 
-
+    @Override
+    public List<Map<String,Object>> getId(String userEmail) {
+        return exerciseMapper.getId(userEmail);
+    }
 }

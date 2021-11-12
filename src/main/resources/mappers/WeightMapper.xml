@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.tantanbody.mapper.WeightMapper">
+
+    <!--usermail-->
+    <select id="selectWeight" resultType="java.util.HashMap">
+        select * from weight_record
+        WHERE ui.user_email = fr.user_email
+          AND ui.record_num = fr.record_num
+    </select>
+
+    <select id="getWeight" resultType="java.util.HashMap">
+        select * FROM weight_record
+        WHERE ui.user_email = fr.user_email
+          AND ui.record_num = fr.record_num
+    </select>
+
+    <!--weight 저장 / date랑 record_num도 추가해야하는지..?-->
+    <insert id="saveWeight" parameterType="WeightDTO">
+        insert into weight_record(record_num, record_date, weight)
+        values (#{record_num}, #{weight}, #{record_date})
+            WHERE ui.user_email = fr.user_email
+          AND ui.record_num = fr.record_num
+    </insert>
+
+    <!--weight 수정-->
+    <update id="updateWeight" parameterType="weightDTO">
+        update weight_record
+        set WEIGHT  = #{weight}
+        where ui.user_email = fr.user_email
+          AND ui.record_num = fr.record_num
+    </update>
+
+
+</mapper>

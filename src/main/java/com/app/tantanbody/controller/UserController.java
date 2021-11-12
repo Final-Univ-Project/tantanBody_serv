@@ -43,11 +43,13 @@ public class UserController {
                 //신규 사용자는 user 정보를 저장해줘야 함
                 log.info("신규 사용자 등록 ={}", userDto.getUserEmail());
                 userService.saveUserData(userDto);
+            } else{
+                log.info("기존 사용자 입니다... ={}", userDto.getUserEmail());
             }
-            log.info("기존 사용자 입니다... ={}", userDto.getUserEmail());
             return "OK";
         } catch (Exception e){
             return "ERR";
         }
     }
+
 }

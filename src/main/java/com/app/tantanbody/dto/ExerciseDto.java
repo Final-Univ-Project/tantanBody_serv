@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,4 +28,5 @@ public class ExerciseDto extends UserDto{
     //favorite_exercise
     private Timestamp registeredDate;
 
+    private List<ExerciseDto> videoList;
 }

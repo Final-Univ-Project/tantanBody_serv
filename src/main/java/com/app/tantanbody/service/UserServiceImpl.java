@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Map<String, Object>> getUserList() {
-        log.info("====== info getUserList ::: started");
         return userMapper.getUserList();
     }
 

@@ -3,5 +3,9 @@
 <mapper namespace="com.app.tantanbody.mapper.ExerciseMapper">
 
 <!--TODO 쿼리 짜자...-->
+    <!--join 필요할듯-->
+    <select id="selectFavExercise" resultType="java.util.HashMap">
+
+    </select>
 
 </mapper>

@@ -19,4 +19,10 @@ public interface ExerciseMapper {
 
     void deleteFavVideo(String userEmail, String videoId);
 
+    ///////////////////
+    List<Map<String,Object>> getId(String userEmail);
+
+    void insertExercise(ExerciseDto exerciseDto);
+
+    void updateExercise(ExerciseDto exerciseDto);
 }
